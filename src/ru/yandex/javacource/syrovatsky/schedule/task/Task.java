@@ -1,5 +1,7 @@
 package ru.yandex.javacource.syrovatsky.schedule.task;
 
+import ru.yandex.javacource.syrovatsky.schedule.enums.Status;
+
 import java.util.Objects;
 
 public class Task {
