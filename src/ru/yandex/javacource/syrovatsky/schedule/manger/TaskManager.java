@@ -4,7 +4,6 @@ import ru.yandex.javacource.syrovatsky.schedule.task.Epic;
 import ru.yandex.javacource.syrovatsky.schedule.task.Subtask;
 import ru.yandex.javacource.syrovatsky.schedule.task.Task;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public interface TaskManager {
@@ -18,9 +17,9 @@ public interface TaskManager {
 
     Task updateTask(Task task);
 
-    void updateEpic(Epic epic);
+    Epic updateEpic(Epic epic);
 
-    void updateSubtask(Subtask subtask);
+    Subtask updateSubtask(Subtask subtask);
 
     Task getTaskByID(int id);
 
@@ -34,12 +33,11 @@ public interface TaskManager {
 
     void deleteSubtasks();
 
-    void deleteTask(int id) //Удаления задач по ID
-    ;
+    Task deleteTask(int id); //Удаления задач по ID
 
-    void deleteSubtask(int id);
+    Subtask deleteSubtask(int id);
 
-    void deleteEpic(int id);
+    Epic deleteEpic(int id);
 
     ArrayList<Task> getTasks();
 

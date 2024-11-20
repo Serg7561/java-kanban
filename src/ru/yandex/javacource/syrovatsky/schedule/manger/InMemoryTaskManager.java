@@ -59,29 +59,32 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public void updateEpic(Epic epic) { //Обновление эпика
+    public Epic updateEpic(Epic epic) { //Обновление эпика
         Epic savedEpic = epics.get(epic.getId());
         if (savedEpic == null) {
-            return;
+            return null;
         }
         savedEpic.setName(epic.getName());
         savedEpic.setDescription(epic.getDescription());
+        return epic;
+
     }
 
     @Override
-    public void updateSubtask(Subtask subtask) { //Обновление подзадачи
+    public Subtask updateSubtask(Subtask subtask) { //Обновление подзадачи
         int id = subtask.getId();
         int epicId = subtask.getepicId();
         Subtask savedSubtask = subtasks.get(id);
         if (savedSubtask == null) {
-            return;
+            return null;
         }
         Epic epic = epics.get(epicId);
         if (epic == null) {
-            return;
+            return null;
         }
         subtasks.put(id, subtask);
         updateEpicStatus(epicId);
+        return subtask;
     }
 
     @Override
@@ -100,7 +103,6 @@ public class InMemoryTaskManager implements TaskManager {
             historyManager.addHistory(task);
         }
         return epics.get(id);
-        //return epics.get(id);
     }
 
     @Override
@@ -133,29 +135,31 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public void deleteTask(int id) { //Удаление задачи
-        tasks.remove(id);
+    public Task deleteTask(int id) { //Удаление задачи
+        return tasks.remove(id);
     } //Удаления задач по ID
 
     @Override
-    public void deleteSubtask(int id) { //Удаление подзадачи по ID
+    public Subtask deleteSubtask(int id) { //Удаление подзадачи по ID
         Subtask subtask = subtasks.remove(id);
         if (subtask == null) {
-            return;
+            return null;
         }
         Epic epic = epics.get(subtask.getepicId());
         updateEpicStatus(epic.getId());
+        return subtask;
     }
 
     @Override
-    public void deleteEpic(int id) { //Удаления эпиков по ID
+    public Epic deleteEpic(int id) { //Удаления эпиков по ID
         final Epic epic = epics.remove(id);
         if (epic == null) {
-            return;
+            return null;
         }
         for (Integer subtaskId : epic.getSubtaskId()) {
             subtasks.remove(subtaskId);
         }
+        return epics.remove(id);
     }
 
     @Override
