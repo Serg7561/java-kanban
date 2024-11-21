@@ -74,11 +74,11 @@ class InMemoryHistoryManagerTest {
         Subtask subtask = new Subtask("Взять паспорт", "В нем квитанция", epic.getId());
         taskManager.addSubtask(subtask);
         Subtask initialSubtask = taskManager.getSubtaskByID(subtask.getId());
-        String newName = "Take Passport";
-        String newDescription = "It has the receipt";
+        String newName = "Не забыть паспорт";
+        String newDescription = "Не забыть талон";
         subtask.setName(newName);
         subtask.setDescription(newDescription);
-        taskManager.updateSubtask(subtask); // Assuming you have an updateSubtask method
+        taskManager.updateSubtask(subtask);
         List<Task> history = taskManager.getHistory();
         Subtask updatedSubtaskFromHistory = null;
         for (Task task : history) {
