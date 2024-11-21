@@ -5,6 +5,8 @@ import ru.yandex.javacource.syrovatsky.schedule.enums.Status;
 import ru.yandex.javacource.syrovatsky.schedule.task.Subtask;
 import ru.yandex.javacource.syrovatsky.schedule.task.Task;
 
+import java.sql.Array;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -168,17 +170,17 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Epic> getEpics() { //Получение всех эпиков
+    public List<Epic> getEpics() { //Получение всех эпиков
         return new ArrayList<>(epics.values());
     }
 
     @Override
-    public ArrayList<Subtask> getEpicSubtasks(int epicId) { // Получение подзадач по ID эпика
+    public List<Subtask> getEpicSubtasks(int epicId) { // Получение подзадач по ID эпика
         ArrayList<Subtask> subtasksForId = new ArrayList<>();
         if (!epics.containsKey(epicId)) {
             return subtasksForId;
         }
-        ArrayList<Integer> subtaskIds = epics.get(epicId).getSubtaskId();
+        List<Integer> subtaskIds = epics.get(epicId).getSubtaskId();
         for (Integer sub : subtaskIds) {
 
             subtasksForId.add(subtasks.get(sub));
@@ -187,7 +189,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Subtask> getSubtasks() { //Получение всех подзадач
+    public List<Subtask> getSubtasks() { //Получение всех подзадач
         return new ArrayList<>(subtasks.values());
     }
 
@@ -195,7 +197,7 @@ public class InMemoryTaskManager implements TaskManager {
     public void updateEpicStatus(int epicId) {  //Метод для контроля статуса эпика при удалении или изменении подзадач
         Epic epic = epics.get(epicId);
 
-        ArrayList<Integer> subtaskIds = epics.get(epicId).getSubtaskId();
+        List<Integer> subtaskIds = epics.get(epicId).getSubtaskId();
 
         int doneCount = 0;
         int newCount = 0;
@@ -223,7 +225,7 @@ public class InMemoryTaskManager implements TaskManager {
     }
 
     @Override
-    public ArrayList<Task> getHistory() {
+    public List<Task> getHistory() {
         return historyManager.getHistory();
     }
 }

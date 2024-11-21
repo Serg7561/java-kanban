@@ -4,7 +4,7 @@ import ru.yandex.javacource.syrovatsky.schedule.task.Epic;
 import ru.yandex.javacource.syrovatsky.schedule.task.Subtask;
 import ru.yandex.javacource.syrovatsky.schedule.task.Task;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface TaskManager {
     int getGeneratorId();
@@ -39,15 +39,15 @@ public interface TaskManager {
 
     Epic deleteEpic(int id);
 
-    ArrayList<Task> getTasks();
+    List<Task> getTasks();
 
-    ArrayList<Epic> getEpics();
+    List<Epic> getEpics();
 
-    ArrayList<Subtask> getEpicSubtasks(int epicId);
+    List<Subtask> getEpicSubtasks(int epicId);
 
-    ArrayList<Subtask> getSubtasks();
+    List<Subtask> getSubtasks();
 
     void updateEpicStatus(int epicId);
 
-    ArrayList<Task> getHistory();
+    List<Task> getHistory();
 }
