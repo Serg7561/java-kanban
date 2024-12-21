@@ -25,7 +25,7 @@ public class Task {
         this.status = status;
     }
 
-    public Task(int i, String name) { //На случай если не будет описания
+    public Task(String name) { //На случай если не будет описания
         this.name = name;
         this.description = " ";
         this.status = Status.NEW;

@@ -17,22 +17,22 @@ public class Main {
         Task awayTrashCreated = inMemoryTaskManager.addTask(awayTrash);
         System.out.println(awayTrashCreated);
 
-        Task slep = new Task("Поспать", "Хотя бы пару часов");
-        Task slepCreated = inMemoryTaskManager.addTask(slep);
-        System.out.println(slepCreated);
+        Task Slep = new Task("Поспать", "Хотя бы пару часов");
+        Task SlepCreated = inMemoryTaskManager.addTask(Slep);
+        System.out.println(SlepCreated);
 
         Task awayTrashToUpdate = new Task(awayTrash.getId(), "Не забыть выбросить мусор",
                 "Хотя бы пакет", Status.IN_PROGRESS);
         Task awayTrashUpdated = inMemoryTaskManager.updateTask(awayTrashToUpdate);
         System.out.println(awayTrashUpdated);
 
-        Epic test = new Epic("Провести тесты", "Нужно успеть за вечер");
-        inMemoryTaskManager.addEpic(test);
-        System.out.println(test);
-        Subtask testSubtask = new Subtask("Все тесты", "Хотя бы основные",
-                test.getId());
-        inMemoryTaskManager.addSubtask(testSubtask);
-        System.out.println(testSubtask);
+        Epic Test = new Epic("Провести тесты", "Нужно успеть за вечер");
+        inMemoryTaskManager.addEpic(Test);
+        System.out.println(Test);
+        Subtask TestSubtask = new Subtask("Все тесты", "Хотя бы основные",
+                Test.getId());
+        inMemoryTaskManager.addSubtask(TestSubtask);
+        System.out.println(TestSubtask);
 
         Epic repairCar = new Epic("Починить машину", "Нужно успеть на выходных");
         inMemoryTaskManager.addEpic(repairCar);

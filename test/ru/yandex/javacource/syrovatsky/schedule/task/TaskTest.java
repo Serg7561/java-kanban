@@ -14,6 +14,7 @@ class TaskTest {
         Task t1 = new Task(5, "Зайти на почту", "Сначала попробовать записаться",
                 Status.IN_PROGRESS);
         Task t2 = new Task(5, "Купить кошачий корм", "Вспомнить точно какой", Status.DONE);
-        assertNotEquals(t1, t2, "Задачи с разными ID не должны быть одинаковыми");
+        assertEquals(t1, t2,
+                "Ошибка! Если равны ID то должны быть равны и таски ");
     }
 }

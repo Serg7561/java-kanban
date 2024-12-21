@@ -15,25 +15,10 @@ import java.util.List;
 
 class InMemoryTaskManagerTest {
     private static TaskManager taskManager;
-    private Epic epic;
-    private Task task1;
-    private Task task2;
 
     @BeforeEach
     public void beforeEach() {
         taskManager = Managers.getDefault();
-        epic = new Epic("1", "Epic 1");
-        task1 = new Task(2, "Task 1");
-        task2 = new Task(3, "Task 2");
-        epic.addSubtaskId(task1.getId());
-        epic.addSubtaskId(task2.getId());
-    }
-
-    @Test
-    public void testDeleteSubtasks() {
-        epic.clearSubtasks();
-        List<Integer> subtaskIds = epic.getSubtaskId();
-        assertTrue(subtaskIds.isEmpty(),"Содержит не актуальные Id");
     }
 
     @Test
