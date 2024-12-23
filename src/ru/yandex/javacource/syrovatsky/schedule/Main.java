@@ -46,19 +46,6 @@ public class Main {
         System.out.println(repairCar);
         repairCarSubtask2.setStatus(Status.DONE);
         inMemoryTaskManager.updateSubtask(repairCarSubtask2);
-        /*System.out.println(repairCar);
-        System.out.println(repairCarSubtask1);
-        System.out.println(repairCarSubtask2);
-        System.out.println(" ");
-        inMemoryTaskManager.deleteTask(2);
-        System.out.println(inMemoryTaskManager.getTasks());
-        System.out.println(" ");
-        inMemoryTaskManager.deleteSubtask(8);
-        System.out.println(inMemoryTaskManager.getSubtasks());
-        System.out.println(" ");
-        inMemoryTaskManager.deleteEpic(4);
-        System.out.println(inMemoryTaskManager.getEpics());
-        System.out.println(inMemoryTaskManager.getEpicSubtasks(2));*/
 
         System.out.println(" ");
         System.out.println("Выводим все задачи:");
