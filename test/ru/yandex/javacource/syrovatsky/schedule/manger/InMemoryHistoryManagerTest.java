@@ -14,25 +14,51 @@ import ru.yandex.javacource.syrovatsky.schedule.task.Task;
 
 class InMemoryHistoryManagerTest {
     private static TaskManager taskManager;
+    private HistoryManager historyManager;
+    private Epic epic;
+    private Task task1;
+    private Task task2;
+    private Task task3;
+    private Task task4;
 
     @BeforeEach
     public void beforeEach() {
         taskManager = Managers.getDefault();
+        historyManager = new InMemoryHistoryManager();
+        epic = new Epic("Name1", "Epic 1");
+        task1 = new Task(1, "Task 1");
+        task2 = new Task(2, "Task 2");
+        task3 = new Task(3, "Task 3");
+        task4 = new Task(4, "Task 4");
+        epic.addSubtaskId(task3.getId());
+        epic.addSubtaskId(task4.getId());
+        historyManager.addHistory(task1);
+        historyManager.addHistory(task2);
     }
 
     @Test
-    public void getHistoryReturnArrayList() {
-        for (int i = 0; i < 20; i++) {
-            taskManager.addTask(new Task("Имя", "Текст"));
-        }
+    public void testRemoveOldId() {
+        historyManager.addHistory(task1);
+        historyManager.remove(1);
+        historyManager.addHistory(task2);
+        assertNotEquals(1, task2.getId(),"Удаленная задача содержит старый id");
 
-        List<Task> tasks = taskManager.getTasks();
-        for (Task task : tasks) {
-            taskManager.getTaskByID(task.getId());
-        }
+    }
 
-        List<Task> list = taskManager.getHistory();
-        assertEquals(10, list.size(), "Неверное количество элементов в истории ");
+    @Test
+    public void testAddNewTask() {
+        historyManager.addHistory(task1);
+        List<Task> history = historyManager.getHistory();
+        assertEquals(1, history.size());
+        assertEquals(task1, history.get(0), "Добавленная задача не появилась в истории просмотров.");
+    }
+
+    @Test
+    public void testRemoveTask() {
+        historyManager.remove(1);
+        List<Task> history = historyManager.getHistory();
+        assertEquals(1, history.size());
+        assertEquals(task2, history.get(0));
     }
 
     @Test
