@@ -15,12 +15,15 @@ import java.util.List;
 
 public class FileBackedTaskManager extends InMemoryTaskManager {
 
-    private static final String HEADER_CSV_FILE = "id,type,name,status,description,startTime,duration,epic \n";
     private File file;
 
     public FileBackedTaskManager(HistoryManager defaultHistory, File file) {
         super();
         this.file = file;
+    }
+
+    private static String getHeaderCSV() {
+        return "id,type,name,status,description,startTime,duration,epic \n";
     }
 
     static String historyToString(HistoryManager manager) {
@@ -75,7 +78,7 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
-            writer.write(HEADER_CSV_FILE);
+            writer.write(getHeaderCSV());
             for (Task task : getTasks()) {
                 writer.write(toString(task));
                 writer.newLine();
@@ -221,6 +224,11 @@ public class FileBackedTaskManager extends InMemoryTaskManager {
             return null;
         }
         updateEpicStatus(subtask.getEpicId());
+        Epic epic = getEpicByID(subtask.getEpicId());
+        if (epic != null) {
+            updateTimeEpic(epic);
+        }
+
         return subtask;
     }
 

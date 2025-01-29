@@ -7,7 +7,6 @@ import ru.yandex.javacource.syrovatsky.schedule.task.Task;
 import java.util.List;
 
 public interface TaskManager {
-    int getGeneratorId();
 
     Task addTask(Task task);
 
